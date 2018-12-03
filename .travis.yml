@@ -69,7 +69,7 @@ jobs:
         - cp manifest-registration.yml manifest.yml
         - echo "Deploying registration server $RELEASE_TAG"
       deploy:
-        <<: *cloudfoundrylost or forgotten this token, you can regenerate it, but be aware that any scripts or applications using this token will need to be up
+        <<: *cloudfoundry
     - stage: deploy
       language: bash
       script:
