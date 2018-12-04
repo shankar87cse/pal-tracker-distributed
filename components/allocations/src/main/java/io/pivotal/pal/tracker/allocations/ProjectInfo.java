@@ -1,6 +1,13 @@
 package io.pivotal.pal.tracker.allocations;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.redis.core.RedisHash;
+
+@RedisHash("ProjectInfo")
 public class ProjectInfo {
+
+    @Id
+    public String id;
 
     public final boolean active;
 
