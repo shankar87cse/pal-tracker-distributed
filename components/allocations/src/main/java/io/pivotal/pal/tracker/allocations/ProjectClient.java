@@ -3,6 +3,7 @@ package io.pivotal.pal.tracker.allocations;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.web.client.RestOperations;
 
@@ -14,6 +15,7 @@ public class ProjectClient {
     private final Logger logger = LoggerFactory.getLogger(getClass());
     private final RestOperations restOperations;
     private final String endpoint;
+    @Autowired
     private RedisProjectInfoRepository redisProjectInfoRep;
     private Map<Long, ProjectInfo> projectsCache = new ConcurrentHashMap<>();
 
@@ -33,6 +35,9 @@ public class ProjectClient {
     public ProjectInfo getProjectFromCache(long projectId) {
         logger.info("Getting project with id {} from cache", projectId);
         //return projectsCache.get(projectId);
-        return redisProjectInfoRep.findOne(redisProjectInfoRep+"");
+        if (redisProjectInfoRep != null) {
+            return redisProjectInfoRep.findOne(redisProjectInfoRep + "");
+        }
+        return null;
     }
 }
