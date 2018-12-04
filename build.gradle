@@ -5,6 +5,9 @@ buildscript {
         springBootVersion = "1.5.7.RELEASE"
         springVersion = "4.3.8.RELEASE"
         mysqlVersion = "6.0.6"
+        springCloudVersion = "Edgware.SR5"
+        springCloudServicesClientLibrariesVersion = "1.6.6.RELEASE"
+        springCloudCommonVersion = "1.3.5.RELEASE"
     }
 
     repositories {
