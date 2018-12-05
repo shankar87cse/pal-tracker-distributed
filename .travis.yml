@@ -20,6 +20,11 @@ jobs:
       install: skip
       before_script:
         - mysql -uroot < databases/create_databases.sql
+        - wget http://download.redis.io/redis-stable.tar.gz
+        - tar xvzf redis-stable.tar.gz
+        - cd redis-stable
+        - make
+        - redis-server
         - ./gradlew testMigrate
       script: ./gradlew clean build
       before_deploy:
