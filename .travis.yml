@@ -24,7 +24,7 @@ jobs:
         - tar xvzf redis-stable.tar.gz
         - cd redis-stable
         - make
-        - nohup redis-server &
+        - redis-server &
         - ./gradlew testMigrate
       script: ./gradlew clean build
       before_deploy:
