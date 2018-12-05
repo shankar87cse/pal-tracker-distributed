@@ -1,13 +1,9 @@
 package io.pivotal.pal.tracker.allocations;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.redis.core.RedisHash;
 
-@RedisHash("ProjectInfo")
-public class ProjectInfo {
+import java.io.Serializable;
 
-    @Id
-    public String id;
+public class ProjectInfo implements Serializable {
 
     public final boolean active;
 

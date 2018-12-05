@@ -1,14 +1,9 @@
 package io.pivotal.pal.tracker.projects;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.redis.core.RedisHash;
-
 import java.io.Serializable;
 
-@RedisHash("ProjectInfo")
 public class ProjectInfo implements Serializable {
 
-    @Id
     public final long id;
     public final long accountId;
     public final String name;

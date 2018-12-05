@@ -3,14 +3,19 @@ package io.pivotal.pal.tracker.allocations;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.cache.Cache;
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.EnableCaching;
 import org.springframework.cloud.client.circuitbreaker.EnableCircuitBreaker;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.web.client.RestOperations;
 
+import java.util.Collection;
 import java.util.TimeZone;
 
+@EnableCaching
 @EnableCircuitBreaker
 @EnableEurekaClient
 @SpringBootApplication
@@ -24,9 +29,9 @@ public class App {
 
     @Bean
     ProjectClient projectClient(
-        RestOperations restOperations,
-        @Value("${registration.server.endpoint}") String registrationEndpoint
-    ) {
-        return new ProjectClient(restOperations, registrationEndpoint);
+            RestOperations restOperations,
+            @Value("${registration.server.endpoint}") String registrationEndpoint,
+            CacheManager cacheManager) {
+        return new ProjectClient(restOperations, registrationEndpoint, cacheManager);
     }
 }
